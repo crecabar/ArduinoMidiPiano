@@ -1,5 +1,5 @@
-#define NUM_ROWS 6
-#define NUM_COLS 11
+#define NUM_ROWS 8
+#define NUM_COLS 8
 
 #define NOTE_ON_CMD 0x90
 #define NOTE_OFF_CMD 0x80
@@ -17,11 +17,13 @@ const int row3Pin = 4;
 const int row4Pin = 5;
 const int row5Pin = 6;
 const int row6Pin = 7;
+const int row7Pin = 8;
+const int row8Pin = 9;
 
 // 74HC595 pins
-const int dataPin = 8;
-const int latchPin = 9;
-const int clockPin = 10;
+const int dataPin = 10;
+const int latchPin = 11;
+const int clockPin = 12;
 
 boolean keyPressed[NUM_ROWS][NUM_COLS];
 uint8_t keyToMidiMap[NUM_ROWS][NUM_COLS];
@@ -41,7 +43,7 @@ int bits[] =
 
 void setup()
 {
-  int note = 31;
+  int note = 24; //C2
 
   for(int colCtr = 0; colCtr < NUM_COLS; ++colCtr)
   {
@@ -64,6 +66,8 @@ void setup()
   pinMode(row4Pin, INPUT);
   pinMode(row5Pin, INPUT);
   pinMode(row6Pin, INPUT);
+  pinMode(row7Pin, INPUT);
+  pinMode(row8Pin, INPUT);
 
   Serial.begin(SERIAL_RATE);
 }
@@ -83,6 +87,8 @@ void loop()
     rowValue[3] = digitalRead(row4Pin);
     rowValue[4] = digitalRead(row5Pin);
     rowValue[5] = digitalRead(row6Pin);
+    rowValue[6] = digitalRead(row7Pin);
+    rowValue[7] = digitalRead(row8Pin);
 
     // process keys pressed
     for(int rowCtr=0; rowCtr<NUM_ROWS; ++rowCtr)
