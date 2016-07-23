@@ -1,9 +1,14 @@
 #define NUM_ROWS 8
 #define NUM_COLS 8
+#define NUM_OF_KEYS 61
 
 #define NOTE_ON_CMD 0x90
 #define NOTE_OFF_CMD 0x80
 #define NOTE_VELOCITY 127
+
+#define SUSTAIN_PEDAL_CMD 0x40
+#define PORTAMENTO_PEDAL_CMD 0x41
+#define SOSTENUTO_PEDAL_CMD 0x42
 
 //MIDI baud rate
 #define SERIAL_RATE 31250
@@ -21,9 +26,9 @@ const int row7Pin = 8;
 const int row8Pin = 9;
 
 // 74HC595 pins
-const int dataPin = 10;
+const int dataPin = 12;
 const int latchPin = 11;
-const int clockPin = 12;
+const int clockPin = 10;
 
 boolean keyPressed[NUM_ROWS][NUM_COLS];
 uint8_t keyToMidiMap[NUM_ROWS][NUM_COLS];
